@@ -12,7 +12,7 @@ export default function Home() {
       <ParallaxBackground />
       <Navbar />
       <Hero />
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 pb-20 md:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 pb-20 md:px-8">
         <About />
         <Skills />
         <ProjectsCTA />
