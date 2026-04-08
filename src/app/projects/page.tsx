@@ -44,7 +44,7 @@ export default function ProjectsPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
           <Link href="/" className="group flex items-center">
             <Image
-              src="/asset/nav-logo.png"
+              src="/asset/nav-logo2.png"
               alt="Logo"
               width={48}
               height={48}
