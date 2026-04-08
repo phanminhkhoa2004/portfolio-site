@@ -24,11 +24,15 @@ export default function Hero() {
     >
       {/* Title — Bagel Fat One with gold gradient + stroke */}
       <motion.h1
-        className="display-title text-center"
-        style={{ y: titleY, opacity: titleOpacity }}
-      >
-        Portfolio
-      </motion.h1>
+  className="display-title text-center 
+  text-[#ffb347]
+  [text-shadow:0_0_10px_#ffb347,0_0_20px_#ff8c00,0_0_40px_#ff8c00]
+  hover:[text-shadow:0_0_20px_#ffb347,0_0_40px_#ff8c00,0_0_80px_#ff8c00]
+  transition-all duration-300"
+  style={{ y: titleY, opacity: titleOpacity }}
+>
+  Portfolio
+</motion.h1>
 
       <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
         {/* Avatar — transparent bg, parallax float */}
