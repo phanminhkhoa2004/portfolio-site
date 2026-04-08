@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,8 +15,8 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
+    { label: "Home", href: "/Home#hero" },
+    { label: "About", href: "/Home#about" },
     { label: "Lab", href: "/projects" },
   ];
 
@@ -33,7 +35,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
         {/* Logo — replace /asset/nav-logo.png with your image */}
-        <a href="#hero" className="group flex items-center gap-3">
+        <Link href="/" className="group flex items-center gap-3">
           <div className="relative overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/asset/nav-logo2.png"
@@ -43,7 +45,7 @@ export default function Navbar() {
               className="h-12 w-12 object-contain"
             />
           </div>
-        </a>
+        </Link>
 
         {/* Nav links */}
         <div className="nav-text flex items-center gap-2 md:gap-3">

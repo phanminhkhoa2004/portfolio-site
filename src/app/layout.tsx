@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from "next";
 import { Baloo_2, Nunito, Quicksand } from "next/font/google";
 import "./globals.css";
+import PageTransition from "./components/PageTransition";
 
 const baloo = Baloo_2({
   variable: "--font-title",
@@ -41,7 +43,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }

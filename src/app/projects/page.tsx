@@ -42,7 +42,7 @@ export default function ProjectsPage() {
         }}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
-          <Link href="/" className="group flex items-center">
+          <Link href="/Home" className="group flex items-center">
             <Image
               src="/asset/nav-logo2.png"
               alt="Logo"
@@ -52,8 +52,8 @@ export default function ProjectsPage() {
             />
           </Link>
           <div className="nav-text flex items-center gap-2 md:gap-3">
-            <Link href="/" className="rounded-full px-5 py-2 text-base text-[#c8d0f0] transition-all hover:bg-white/8 hover:text-white md:text-lg">Home</Link>
-            <Link href="/#about" className="rounded-full px-5 py-2 text-base text-[#c8d0f0] transition-all hover:bg-white/8 hover:text-white md:text-lg">About</Link>
+            <Link href="/Home" className="rounded-full px-5 py-2 text-base text-[#c8d0f0] transition-all hover:bg-white/8 hover:text-white md:text-lg">Home</Link>
+            <Link href="/Home#about" className="rounded-full px-5 py-2 text-base text-[#c8d0f0] transition-all hover:bg-white/8 hover:text-white md:text-lg">About</Link>
             <Link href="/projects" className="rounded-full bg-white/8 px-5 py-2 text-base text-white md:text-lg">Lab</Link>
           </div>
         </div>

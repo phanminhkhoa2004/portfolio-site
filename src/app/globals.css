@@ -229,3 +229,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(140, 80, 255, 0.5);
 }
+body {
+  perspective: 1200px;
+  overflow-x: hidden;
+}
