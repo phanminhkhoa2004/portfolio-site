@@ -1,25 +1,25 @@
-/* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from "next";
-import { Baloo_2, Nunito, Quicksand } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
-import PageTransition from "./components/PageTransition";
+import PortalTransition from "./components/PortalTransition";
+import BasiliskOrbit from "./components/BasiliskOrbit";
 
-const baloo = Baloo_2({
-  variable: "--font-title",
+const cinzel = Cinzel({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
 });
 
-const nunito = Nunito({
-  variable: "--font-text",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-title",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const quicksand = Quicksand({
-  variable: "--font-intro",
+const manrope = Manrope({
+  variable: "--font-text",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -35,16 +35,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${baloo.variable} ${nunito.variable} ${quicksand.variable} h-full antialiased`}
+      className={`${cinzel.variable} ${cormorant.variable} ${manrope.variable} h-full antialiased`}
     >
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Baloo&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-full">
-        <PageTransition>{children}</PageTransition>
+      <body className="min-h-full bg-[#050505] text-white">
+        <BasiliskOrbit />
+        <PortalTransition>{children}</PortalTransition>
       </body>
     </html>
   );

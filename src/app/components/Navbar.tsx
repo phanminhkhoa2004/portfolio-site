@@ -17,7 +17,10 @@ export default function Navbar() {
   const links = [
     { label: "Home", href: "/Home#hero" },
     { label: "About", href: "/Home#about" },
+    { label: "Skills", href: "/Home#skills" },
+    { label: "Journey", href: "/Home#journey" },
     { label: "Lab", href: "/projects" },
+    { label: "Contact", href: "/Home#contact" },
   ];
 
   return (
@@ -25,12 +28,13 @@ export default function Navbar() {
       className="sticky top-0 z-50 transition-all duration-500"
       style={{
         background: scrolled
-          ? "linear-gradient(135deg, rgba(40, 15, 120, 0.85), rgba(65, 20, 140, 0.8))"
-          : "linear-gradient(135deg, #3510a8, #5a2db8)",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
+          ? "linear-gradient(135deg, rgba(5, 5, 5, 0.9), rgba(11, 61, 46, 0.9))"
+          : "linear-gradient(135deg, rgba(5, 5, 5, 0.8), rgba(11, 61, 46, 0.55))",
+        backdropFilter: "blur(20px)",
         boxShadow: scrolled
-          ? "0 4px 30px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(255,255,255,0.05)"
-          : "0 4px 20px rgba(0, 0, 0, 0.2)",
+          ? "0 8px 30px rgba(0, 0, 0, 0.55)"
+          : "0 10px 24px rgba(0, 0, 0, 0.4)",
+        borderBottom: "1px solid rgba(63, 175, 122, 0.15)",
       }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
@@ -53,7 +57,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="relative rounded-full px-5 py-2 text-base text-[#c8d0f0] transition-all duration-300 hover:bg-white/8 hover:text-white md:text-lg"
+              className="relative rounded-full px-4 py-2 text-[0.7rem] text-[#c7cdd6] transition-all duration-300 hover:bg-emerald-500/10 hover:text-white md:px-5 md:text-[0.75rem]"
             >
               {link.label}
             </a>
@@ -62,13 +66,7 @@ export default function Navbar() {
       </div>
 
       {/* Animated bottom gradient line */}
-      <div
-        className="h-[2px] w-full"
-        style={{
-          background: "linear-gradient(90deg, transparent 0%, #ffa50e 20%, #ff6464 40%, #a764ff 60%, #74ffa7 80%, transparent 100%)",
-          opacity: 0.4,
-        }}
-      />
+      <div className="h-[2px] w-full shimmer-line opacity-50" />
     </nav>
   );
 }

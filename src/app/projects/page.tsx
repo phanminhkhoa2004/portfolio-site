@@ -80,14 +80,13 @@ export default function ProjectsPage() {
         <div className="space-y-0">
           {projects.map((project, i) => (
             <Reveal key={project.number} delay={i * 0.1}>
-              <div className="project-row flex items-center gap-4 px-2 py-8 md:gap-8 md:px-4 md:py-10">
+              <div className="project-row grid gap-4 px-2 py-8 md:grid-cols-[90px_220px_1fr] md:items-center md:gap-10 md:px-4 md:py-10">
                 {/* Number — Baloo, orange */}
                 <span
-                  className="nav-text shrink-0 text-center font-bold"
+                  className="nav-text text-left font-bold md:text-center"
                   style={{
                     color: "#ffa50e",
                     fontSize: "clamp(2.5rem, 6vw, 5rem)",
-                    width: "clamp(60px, 15vw, 160px)",
                     textShadow: "0 0 20px rgba(255,165,14,0.25)",
                   }}
                 >
@@ -96,10 +95,9 @@ export default function ProjectsPage() {
 
                 {/* Label — Baloo, white */}
                 <span
-                  className="nav-text shrink-0 font-bold text-white"
+                  className="nav-text font-bold text-white"
                   style={{
                     fontSize: "clamp(1.5rem, 4vw, 3.5rem)",
-                    width: "clamp(100px, 22vw, 220px)",
                     textShadow: "0 0 12px rgba(255,255,255,0.08)",
                   }}
                 >
@@ -108,7 +106,7 @@ export default function ProjectsPage() {
 
                 {/* Description — Nunito */}
                 <p
-                  className="body-text flex-1 text-white/85"
+                  className="body-text text-white/85"
                   style={{ fontSize: "clamp(1rem, 2.5vw, 1.6rem)", lineHeight: 1.3 }}
                 >
                   {project.description}

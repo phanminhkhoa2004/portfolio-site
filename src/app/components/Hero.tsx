@@ -11,84 +11,99 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const avatarY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const avatarY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-[85vh] flex-col items-center justify-center gap-10 overflow-hidden px-6 py-20"
+      className="relative flex min-h-[92vh] flex-col items-center justify-center gap-12 overflow-hidden px-6 py-24"
     >
-      {/* Title — Bagel Fat One with gold gradient + stroke */}
-      <motion.h1
-  className="display-title text-center 
-  text-[#ffb347]
-  [text-shadow:0_0_10px_#ffb347,0_0_20px_#ff8c00,0_0_40px_#ff8c00]
-  hover:[text-shadow:0_0_20px_#ffb347,0_0_40px_#ff8c00,0_0_80px_#ff8c00]
-  transition-all duration-300"
-  style={{ y: titleY, opacity: titleOpacity }}
->
-  Portfolio
-</motion.h1>
+      <motion.div className="text-center" style={{ y: titleY, opacity: titleOpacity }}>
+        <p className="section-kicker">House of Slytherin</p>
+        <h1 className="display-title mt-4">Portfolio</h1>
+      </motion.div>
 
-      <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-        {/* Avatar — transparent bg, parallax float */}
-        <motion.div
-          className="floating h-48 w-44 shrink-0 overflow-hidden md:h-64 md:w-56"
-          style={{ y: avatarY }}
-        >
-          <Image
-            src="/asset/avatar.png"
-            alt="Avatar"
-            width={267}
-            height={400}
-            className="h-full w-full object-contain"
-            priority
-          />
+      <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
+        <motion.div className="space-y-6 text-center md:text-left" style={{ y: textY }}>
+          <p className="intro-text">Hello, I am</p>
+          <h2 className="text-3xl font-semibold text-white md:text-5xl" style={{ fontFamily: "var(--font-title)" }}>
+            Phan Minh Khoa
+          </h2>
+          <p className="body-text max-w-xl">
+            Designer-in-training crafting immersive visual stories. I build moody,
+            cinematic interfaces with a focus on clarity, rhythm, and magical detail.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
+            <a href="#projects" className="cta-button">
+              View Works
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#contact" className="ghost-button">
+              Summon Me
+            </a>
+          </div>
+          <div className="grid grid-cols-2 gap-4 pt-4 text-left md:max-w-md">
+            {[
+              { label: "Focus", value: "Visual Design" },
+              { label: "Mood", value: "Dark Fantasy" },
+              { label: "Tooling", value: "Figma, Adobe" },
+              { label: "Year", value: "2026" },
+            ].map((item) => (
+              <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="section-kicker" style={{ letterSpacing: "0.22em" }}>{item.label}</p>
+                <p className="body-text text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Intro text — Quicksand with stroke */}
-        <motion.div className="text-center md:text-left" style={{ y: textY }}>
-          <motion.p
-            className="intro-text text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+        <motion.div className="relative flex items-center justify-center" style={{ y: avatarY }}>
+          <div className="absolute -inset-10 rounded-full border border-emerald-500/30 bg-emerald-500/5 blur-2xl" />
+          <div className="absolute -top-10 right-6 h-16 w-4 rounded-full bg-[#d8c7a1] opacity-70 blur-[1px] shadow-[0_0_20px_rgba(216,199,161,0.6)]" />
+          <div className="absolute -top-2 right-10 h-6 w-6 rounded-full bg-[#3faf7a] blur-md" />
+          <motion.div
+            className="floating relative h-72 w-60 overflow-hidden rounded-[40px] border border-emerald-500/20 bg-gradient-to-b from-[#0b3d2e]/50 to-[#050505] p-3"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
           >
-            Xin chào, tôi là
-          </motion.p>
-          <motion.p
-            className="intro-text font-bold"
-            style={{
-              color: "#37d471",
-              textShadow: "0 0 24px rgba(55, 212, 113, 0.3)",
-              WebkitTextStroke: "0.5px rgba(255,255,255,0.1)",
-              paintOrder: "stroke fill",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            Phan Minh Khoa
-          </motion.p>
+            <Image
+              src="/asset/avatar.png"
+              alt="Avatar"
+              width={300}
+              height={420}
+              className="h-full w-full rounded-[32px] object-contain"
+              priority
+            />
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#c7cdd6]"
         animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
       >
         <svg
           width="20"
           height="20"
           viewBox="0 0 20 20"
           fill="none"
-          stroke="rgba(255,255,255,0.25)"
+          stroke="currentColor"
           strokeWidth="1.5"
         >
           <path d="M10 4 L10 16 M4 10 L10 16 L16 10" />

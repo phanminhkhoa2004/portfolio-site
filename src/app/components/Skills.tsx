@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 import Image from "next/image";
 
 const skills = [
-  { src: "/asset/logo1.jpg", name: "Notion" },
+  { src: "/asset/logo1.jpg", name: "Next.js" },
   { src: "/asset/logo2.png", name: "Illustrator" },
   { src: "/asset/logo3.png", name: "Photoshop" },
   { src: "/asset/logo4.svg", name: "Figma" },
@@ -13,12 +13,12 @@ const skills = [
 const education = [
   {
     src: "/asset/logo5.png",
-    name: "Trung học phổ thông Phan Châu Trinh, Đà Nẵng",
+    name: "Phan Chau Trinh High School, Da Nang",
     round: true,
   },
   {
     src: "/asset/logo6.png",
-    name: "Trường Đại học Công Nghệ thông tin và Truyền Thông Việt-Hàn, Đà Nẵng",
+    name: "Viet-Han University of Information and Communication Technology, Da Nang",
     round: false,
   },
 ];
@@ -29,34 +29,42 @@ export default function Skills() {
       <Reveal>
         <div className="flex flex-col items-stretch gap-6 md:flex-row">
           {/* Skill Panel */}
-          <div className="section-panel-skill boxed-section flex-[0.4] p-8 pt-14 md:p-10 md:pt-16">
-            <h3 className="boxed-title section-title font-bold">Skill</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="section-panel boxed-section flex-[0.45] p-8 pt-14 md:p-10 md:pt-16">
+            <span className="boxed-title">Skills</span>
+            <div className="space-y-4">
               {skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-white/5 p-2 transition-transform duration-300 hover:scale-105"
+                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-transform duration-300 hover:scale-[1.02]"
                 >
-                  <Image
-                    src={skill.src}
-                    alt={skill.name}
-                    width={140}
-                    height={140}
-                    className="h-full w-full object-contain"
-                  />
+                  <div className="h-14 w-14 overflow-hidden rounded-xl bg-black/40 p-2">
+                    <Image
+                      src={skill.src}
+                      alt={skill.name}
+                      width={70}
+                      height={70}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  <div>
+                    <p className="body-text text-white">{skill.name}</p>
+                    <div className="mt-2 h-1.5 w-full rounded-full bg-white/5">
+                      <div className="h-1.5 w-[70%] rounded-full bg-[#3faf7a] shadow-[0_0_14px_rgba(63,175,122,0.45)]" />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Education Panel */}
-          <div className="section-panel-skill boxed-section flex-[0.6] p-8 pt-14 md:p-10 md:pt-16">
-            <h3 className="boxed-title section-title font-bold">Education</h3>
+          <div className="section-panel boxed-section flex-[0.55] p-8 pt-14 md:p-10 md:pt-16">
+            <span className="boxed-title">Education</span>
             <div className="flex h-full flex-col justify-center gap-8">
               {education.map((edu) => (
                 <div
                   key={edu.name}
-                  className="flex items-center gap-5 rounded-2xl p-3 transition-colors duration-300 hover:bg-white/5"
+                  className="flex items-center gap-5 rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 hover:bg-white/10"
                 >
                   <div
                     className={`h-20 w-20 shrink-0 overflow-hidden ${
@@ -71,7 +79,7 @@ export default function Skills() {
                       className="h-full w-full object-contain"
                     />
                   </div>
-                  <p className="body-text text-white" style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.15rem)" }}>
+                  <p className="body-text text-white" style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.1rem)" }}>
                     {edu.name}
                   </p>
                 </div>

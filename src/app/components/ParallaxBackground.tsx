@@ -18,24 +18,24 @@ function StarCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Create 300+ floating stars
-    const stars = Array.from({ length: 350 }, () => {
-      const depth = Math.random(); // 0 = far, 1 = near
+    // Create floating embers/particles
+    const stars = Array.from({ length: 320 }, () => {
+      const depth = Math.random();
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: depth * 2 + 0.3,
-        baseOpacity: depth * 0.5 + 0.15,
+        size: depth * 2.4 + 0.2,
+        baseOpacity: depth * 0.4 + 0.1,
         opacity: Math.random() * 0.3,
-        // Drift velocity — nearer stars drift faster
-        vx: (Math.random() - 0.5) * 0.15 * (depth + 0.3),
-        vy: (Math.random() - 0.5) * 0.1 * (depth + 0.3),
-        // Twinkling
+        // Drift velocity — nearer particles drift faster
+        vx: (Math.random() - 0.5) * 0.12 * (depth + 0.3),
+        vy: (Math.random() - 0.5) * 0.08 * (depth + 0.3),
+        // Twinkling pulse
         twinkleSpeed: Math.random() * 0.008 + 0.002,
         twinklePhase: Math.random() * Math.PI * 2,
-        // Color variation
-        hue: Math.random() > 0.8 ? 270 + Math.random() * 40 : Math.random() > 0.6 ? 160 + Math.random() * 30 : 0,
-        saturation: Math.random() > 0.5 ? 40 : 0,
+        // Color variation (emerald/silver)
+        hue: Math.random() > 0.7 ? 140 + Math.random() * 30 : 200,
+        saturation: Math.random() > 0.5 ? 35 : 10,
       };
     });
 
@@ -60,21 +60,15 @@ function StarCanvas() {
         s.opacity = s.baseOpacity * (0.6 + 0.4 * twinkle);
 
         // Draw
-        if (s.saturation > 0) {
-          ctx.fillStyle = `hsla(${s.hue}, ${s.saturation}%, 85%, ${s.opacity})`;
-        } else {
-          ctx.fillStyle = `rgba(220, 225, 255, ${s.opacity})`;
-        }
+        ctx.fillStyle = `hsla(${s.hue}, ${s.saturation}%, 78%, ${s.opacity})`;
 
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
 
         // Add glow to brighter/larger stars
-        if (s.size > 1.5 && s.opacity > 0.3) {
-          ctx.fillStyle = s.saturation > 0
-            ? `hsla(${s.hue}, ${s.saturation}%, 85%, ${s.opacity * 0.15})`
-            : `rgba(220, 225, 255, ${s.opacity * 0.15})`;
+        if (s.size > 1.6 && s.opacity > 0.25) {
+          ctx.fillStyle = `hsla(${s.hue}, ${s.saturation}%, 80%, ${s.opacity * 0.2})`;
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.size * 3, 0, Math.PI * 2);
           ctx.fill();
@@ -95,16 +89,16 @@ function StarCanvas() {
   return (
     <canvas
       ref={ref}
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className="pointer-events-none fixed inset-0 w-full h-full"
     />
   );
 }
 
 export default function ParallaxBackground() {
   const { scrollYProgress } = useScroll();
-  const orbY1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
-  const orbY3 = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const orbY1 = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const orbY3 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -113,7 +107,7 @@ export default function ParallaxBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 140% 60% at 50% 0%, #1a0860 0%, #0e0040 35%, #080020 65%, #040010 100%)",
+            "radial-gradient(ellipse 120% 70% at 50% 0%, #0b3d2e 0%, #0a1a15 40%, #050505 78%)",
         }}
       />
 
@@ -121,39 +115,43 @@ export default function ParallaxBackground() {
       <motion.div
         className="glow-orb"
         style={{
-          width: "700px",
-          height: "700px",
-          top: "10%",
-          left: "-15%",
-          background: "radial-gradient(circle, rgba(90, 40, 200, 0.18), transparent 70%)",
+          width: "680px",
+          height: "680px",
+          top: "-5%",
+          left: "-20%",
+          background: "radial-gradient(circle, rgba(63, 175, 122, 0.22), transparent 70%)",
           y: orbY1,
         }}
       />
       <motion.div
         className="glow-orb"
         style={{
-          width: "500px",
-          height: "500px",
-          top: "40%",
-          right: "-10%",
-          background: "radial-gradient(circle, rgba(120, 30, 100, 0.12), transparent 70%)",
+          width: "520px",
+          height: "520px",
+          top: "25%",
+          right: "-15%",
+          background: "radial-gradient(circle, rgba(199, 205, 214, 0.15), transparent 70%)",
           y: orbY2,
         }}
       />
       <motion.div
         className="glow-orb"
         style={{
-          width: "600px",
-          height: "600px",
+          width: "560px",
+          height: "560px",
           top: "70%",
-          left: "15%",
-          background: "radial-gradient(circle, rgba(60, 20, 150, 0.1), transparent 70%)",
+          left: "20%",
+          background: "radial-gradient(circle, rgba(11, 61, 46, 0.25), transparent 70%)",
           y: orbY3,
         }}
       />
 
       {/* Floating star field */}
       <StarCanvas />
+
+      <div className="fog-layer" />
+      <div className="fog-layer alt" />
+      <div className="grain" />
     </div>
   );
 }
