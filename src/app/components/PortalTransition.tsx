@@ -43,14 +43,14 @@ export default function PortalTransition({
   const overlayVariants = {
     enter: {
       opacity: 1,
-      transition: { duration: prefersReduced ? 0.01 : 0.2, ease: "easeOut" },
+      transition: { duration: prefersReduced ? 0.01 : 0.2, ease: [0.16, 1, 0.3, 1] },
     },
     exit: {
       opacity: 0,
       transition: {
         duration: prefersReduced ? 0.01 : 0.3,
         delay: prefersReduced ? 0 : 0.45,
-        ease: "easeOut",
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
