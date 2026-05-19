@@ -18,37 +18,27 @@ export default function PageTransition({
         // 👇 trạng thái ban đầu (page mới vào)
         initial={{
           opacity: 0,
-          x: 100,
-          rotateY: 45,
-          scale: 1.1,
-          filter: "blur(10px)",
+          y: 24,
+          scale: 1.02,
         }}
 
         // 👇 khi hiển thị
         animate={{
           opacity: 1,
-          x: 0,
-          rotateY: 0,
+          y: 0,
           scale: 1,
-          filter: "blur(0px)",
         }}
 
         // 👇 khi thoát
         exit={{
           opacity: 0,
-          x: -100,
-          rotateY: -45,
-          scale: 0.9,
-          filter: "blur(10px)",
+          y: -24,
+          scale: 0.98,
         }}
 
         transition={{
-          duration: 0.6,
-          ease: "easeInOut",
-        }}
-
-        style={{
-          transformStyle: "preserve-3d",
+          duration: 0.45,
+          ease: [0.22, 1, 0.36, 1],
         }}
       >
         {children}

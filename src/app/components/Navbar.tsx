@@ -4,6 +4,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Magnetic from "./Magnetic";
+import { cn } from "../../lib/utils";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,8 +30,8 @@ export default function Navbar() {
       className="sticky top-0 z-50 transition-all duration-500"
       style={{
         background: scrolled
-          ? "linear-gradient(135deg, rgba(5, 5, 5, 0.9), rgba(11, 61, 46, 0.9))"
-          : "linear-gradient(135deg, rgba(5, 5, 5, 0.8), rgba(11, 61, 46, 0.55))",
+          ? "linear-gradient(135deg, rgba(3, 4, 3, 0.92), rgba(11, 61, 46, 0.86))"
+          : "linear-gradient(135deg, rgba(3, 4, 3, 0.78), rgba(11, 61, 46, 0.55))",
         backdropFilter: "blur(20px)",
         boxShadow: scrolled
           ? "0 8px 30px rgba(0, 0, 0, 0.55)"
@@ -38,16 +40,19 @@ export default function Navbar() {
       }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
-        {/* Logo — replace /asset/nav-logo.png with your image */}
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="relative overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
+        <Link href="/Home" className="group flex items-center gap-3">
+          <div className="relative overflow-hidden rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-2 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/asset/nav-logo2.png"
               alt="Logo"
-              width={48}
-              height={48}
-              className="h-12 w-12 object-contain"
+              width={44}
+              height={44}
+              className="h-10 w-10 object-contain"
             />
+          </div>
+          <div className="hidden md:block">
+            <p className="section-kicker text-[0.6rem] text-emerald-100/70">Slytherin Archive</p>
+            <p className="text-sm font-semibold tracking-[0.35em] text-emerald-50">MK</p>
           </div>
         </Link>
 
@@ -57,12 +62,33 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="relative rounded-full px-4 py-2 text-[0.7rem] text-[#c7cdd6] transition-all duration-300 hover:bg-emerald-500/10 hover:text-white md:px-5 md:text-[0.75rem]"
+              className={cn(
+                "relative rounded-full px-4 py-2 text-[0.7rem] text-[#c7cdd6] transition-all duration-300",
+                "hover:bg-emerald-500/10 hover:text-white md:px-5 md:text-[0.75rem]",
+              )}
             >
               {link.label}
             </a>
           ))}
         </div>
+
+        <Magnetic className="hidden md:block">
+          <a href="/Home#contact" className="cta-button text-[0.65rem]">
+            Summon
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </Magnetic>
       </div>
 
       {/* Animated bottom gradient line */}

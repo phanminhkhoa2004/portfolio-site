@@ -6,19 +6,19 @@ import { motion } from "framer-motion";
 const steps = [
   {
     year: "2022",
-    title: "First sparks",
+    title: "First Sparks",
     description:
       "Began exploring visual storytelling through posters and moodboards.",
   },
   {
     year: "2024",
-    title: "Design discipline",
+    title: "Design Discipline",
     description:
       "Focused on composition, typographic rhythm, and spatial balance.",
   },
   {
     year: "2026",
-    title: "Cinematic systems",
+    title: "Cinematic Systems",
     description:
       "Building immersive scenes with motion, depth, and premium polish.",
   },

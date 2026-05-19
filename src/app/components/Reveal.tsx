@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 type RevealProps = {
@@ -9,7 +9,6 @@ type RevealProps = {
   delay?: number;
   direction?: "up" | "left" | "right";
   once?: boolean;
-  parallax?: boolean;
 };
 
 export default function Reveal({
@@ -18,17 +17,9 @@ export default function Reveal({
   delay = 0,
   direction = "up",
   once = false,
-  parallax = false,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: "-60px" });
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   const offsets = {
     up: { x: 0, y: 50 },
@@ -47,11 +38,10 @@ export default function Reveal({
           : { opacity: 0, ...offsets[direction] }
       }
       transition={{
-        duration: 0.7,
+        duration: 0.6,
         delay: isInView ? delay : 0,
         ease: [0.16, 1, 0.3, 1],
       }}
-      style={parallax ? { y: parallaxY } : undefined}
     >
       {children}
     </motion.div>

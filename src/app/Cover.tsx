@@ -1,60 +1,79 @@
+"use client";
+
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import Magnetic from "./components/Magnetic";
 
-<div className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-[#1a0b3d] via-[#2b0f6b] to-[#5a1c6e] overflow-hidden">
+export default function Cover() {
+  const router = useRouter();
 
-  {/* Stars */}
-  <div className="absolute inset-0 
-    bg-[radial-gradient(circle,_#ffffff22_1px,_transparent_1px)] 
-    [background-size:40px_40px]
-    animate-pulse
-  "></div>
+  return (
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#030403] px-6">
+      <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(63,175,122,0.18)_0%,_transparent_55%)] opacity-70" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(11,61,46,0.55),_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(3,4,3,0.2)_0%,_rgba(3,4,3,0.95)_100%)]" />
 
-  {/* Glow */}
-  <div className="absolute w-[800px] h-[800px] 
-    bg-[#ff8c00]/20 blur-[150px] rounded-full
-    animate-[pulse_4s_ease-in-out_infinite]"
-  ></div>
+      <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/30 bg-emerald-500/10 blur-[1px]" />
+      <div className="absolute left-1/2 top-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/15" />
 
-  <div className="text-center z-10">
+      <div className="relative z-10 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="section-kicker"
+        >
+          Slytherin Archive
+        </motion.p>
 
-    <motion.h1
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ 
-        opacity: 1, 
-        scale: 1,
-        textShadow: [
-          "0 0 10px #ff8c00",
-          "0 0 40px #ff8c00",
-          "0 0 20px #ff8c00"
-        ]
-      }}
-      transition={{ duration: 2 }}
-      className="
-        text-[60px] md:text-[120px] font-extrabold tracking-wide
-        bg-gradient-to-b from-[#ffd966] to-[#ff8c00]
-        bg-clip-text text-transparent
-      "
-    >
-      PORTFOLIO
-    </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1 }}
+          className="display-title mt-4"
+        >
+          Portfolio
+        </motion.h1>
 
-    <motion.h2
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1 }}
-      className="mt-6 text-3xl text-white"
-    >
-      Phan Minh Khoa
-    </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.9 }}
+          className="intro-text mt-6"
+        >
+          Phan Minh Khoa
+        </motion.p>
 
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.5 }}
-      className="text-white/70 text-xl"
-    >
-      2026
-    </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="body-text mt-2 text-white/60"
+        >
+          2026
+        </motion.p>
 
-  </div>
-</div>
+        <Magnetic className="mt-10 inline-block">
+          <button
+            onClick={() => router.push("/Home")}
+            className="cta-button"
+          >
+            Enter Archive
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </Magnetic>
+      </div>
+    </div>
+  );
+}

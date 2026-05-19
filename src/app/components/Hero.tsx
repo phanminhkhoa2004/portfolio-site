@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Magnetic from "./Magnetic";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -24,44 +25,52 @@ export default function Hero() {
     >
       <motion.div className="text-center" style={{ y: titleY, opacity: titleOpacity }}>
         <p className="section-kicker">House of Slytherin</p>
-        <h1 className="display-title mt-4">Portfolio</h1>
+        <h1 className="display-title mt-4">Secret Archive</h1>
       </motion.div>
 
-      <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
+      <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-[1.15fr_0.85fr]">
         <motion.div className="space-y-6 text-center md:text-left" style={{ y: textY }}>
-          <p className="intro-text">Hello, I am</p>
-          <h2 className="text-3xl font-semibold text-white md:text-5xl" style={{ fontFamily: "var(--font-title)" }}>
+          <p className="intro-text">Welcome, I am</p>
+          <h2
+            className="text-3xl font-semibold text-white md:text-5xl"
+            style={{ fontFamily: "var(--font-title)" }}
+          >
             Phan Minh Khoa
           </h2>
           <p className="body-text max-w-xl">
-            Designer-in-training crafting immersive visual stories. I build moody,
-            cinematic interfaces with a focus on clarity, rhythm, and magical detail.
+            A visual designer crafting cinematic interfaces that feel ancient and
+            modern at once. I build immersive digital scenes with rhythm, light,
+            and quiet magic.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
-            <a href="#projects" className="cta-button">
-              View Works
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-            <a href="#contact" className="ghost-button">
-              Summon Me
-            </a>
+            <Magnetic>
+              <a href="#projects" className="cta-button">
+                Explore Works
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href="#contact" className="ghost-button">
+                Open Channel
+              </a>
+            </Magnetic>
           </div>
           <div className="grid grid-cols-2 gap-4 pt-4 text-left md:max-w-md">
             {[
               { label: "Focus", value: "Visual Design" },
               { label: "Mood", value: "Dark Fantasy" },
-              { label: "Tooling", value: "Figma, Adobe" },
+              { label: "Toolkit", value: "Figma, Adobe" },
               { label: "Year", value: "2026" },
             ].map((item) => (
               <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
@@ -73,11 +82,11 @@ export default function Hero() {
         </motion.div>
 
         <motion.div className="relative flex items-center justify-center" style={{ y: avatarY }}>
-          <div className="absolute -inset-10 rounded-full border border-emerald-500/30 bg-emerald-500/5 blur-2xl" />
-          <div className="absolute -top-10 right-6 h-16 w-4 rounded-full bg-[#d8c7a1] opacity-70 blur-[1px] shadow-[0_0_20px_rgba(216,199,161,0.6)]" />
-          <div className="absolute -top-2 right-10 h-6 w-6 rounded-full bg-[#3faf7a] blur-md" />
+          <div className="absolute -inset-12 rounded-full border border-emerald-500/20 bg-emerald-500/5 blur-2xl" />
+          <div className="absolute -top-12 right-10 h-20 w-4 rounded-full bg-[#d8c7a1] opacity-70 blur-[1px] shadow-[0_0_20px_rgba(216,199,161,0.6)]" />
+          <div className="absolute -top-2 right-12 h-6 w-6 rounded-full bg-[#3faf7a] blur-md" />
           <motion.div
-            className="floating relative h-72 w-60 overflow-hidden rounded-[40px] border border-emerald-500/20 bg-gradient-to-b from-[#0b3d2e]/50 to-[#050505] p-3"
+            className="floating relative h-80 w-64 overflow-hidden rounded-[44px] border border-emerald-500/20 bg-gradient-to-b from-[#0b3d2e]/50 to-[#050505] p-3"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
           >
@@ -86,9 +95,12 @@ export default function Hero() {
               alt="Avatar"
               width={300}
               height={420}
-              className="h-full w-full rounded-[32px] object-contain"
+              className="h-full w-full rounded-[36px] object-contain"
               priority
             />
+            <div className="absolute inset-x-6 bottom-6 rounded-full border border-emerald-200/20 bg-emerald-500/10 px-4 py-2 text-center text-xs uppercase tracking-[0.3em] text-emerald-100/80">
+              Visual Alchemist
+            </div>
           </motion.div>
         </motion.div>
       </div>

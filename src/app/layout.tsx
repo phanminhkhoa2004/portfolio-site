@@ -3,6 +3,8 @@ import { Cinzel, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import PortalTransition from "./components/PortalTransition";
 import BasiliskOrbit from "./components/BasiliskOrbit";
+import SmoothScroll from "./components/SmoothScroll";
+import CursorSpotlight from "./components/CursorSpotlight";
 
 const cinzel = Cinzel({
   variable: "--font-display",
@@ -37,7 +39,9 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${cormorant.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#050505] text-white">
+      <body className="min-h-full bg-[#030403] text-white">
+        <SmoothScroll />
+        <CursorSpotlight />
         <BasiliskOrbit />
         <PortalTransition>{children}</PortalTransition>
       </body>

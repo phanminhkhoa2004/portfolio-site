@@ -1,5 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 export default function BasiliskOrbit() {
   const segments = Array.from({ length: 18 }, (_, index) => index);
 
@@ -10,7 +12,7 @@ export default function BasiliskOrbit() {
           <span
             key={index}
             className={index === 0 ? "basilisk-seg basilisk-head" : "basilisk-seg"}
-            style={{ "--i": index } as React.CSSProperties}
+            style={{ "--i": index } as CSSProperties}
           >
             {index === 0 ? <span className="basilisk-eye" /> : null}
           </span>

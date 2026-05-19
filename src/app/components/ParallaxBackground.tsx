@@ -2,47 +2,83 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
 
 function StarCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d")!;
     let animId: number;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let viewportWidth = 0;
+    let viewportHeight = 0;
+    let stars: Array<{
+      x: number;
+      y: number;
+      size: number;
+      baseOpacity: number;
+      opacity: number;
+      vx: number;
+      vy: number;
+      twinkleSpeed: number;
+      twinklePhase: number;
+      hue: number;
+      saturation: number;
+    }> = [];
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      viewportWidth = window.innerWidth;
+      viewportHeight = window.innerHeight;
+      canvas.width = viewportWidth * dpr;
+      canvas.height = viewportHeight * dpr;
+      canvas.style.width = `${viewportWidth}px`;
+      canvas.style.height = `${viewportHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const starCount = Math.min(
+        180,
+        Math.max(100, Math.floor((viewportWidth * viewportHeight) / 12000))
+      );
+      stars = Array.from({ length: starCount }, () => {
+        const depth = Math.random();
+        return {
+          x: Math.random() * viewportWidth,
+          y: Math.random() * viewportHeight,
+          size: depth * 2.2 + 0.2,
+          baseOpacity: depth * 0.4 + 0.1,
+          opacity: Math.random() * 0.3,
+          // Drift velocity — nearer particles drift faster
+          vx: (Math.random() - 0.5) * 0.1 * (depth + 0.3),
+          vy: (Math.random() - 0.5) * 0.07 * (depth + 0.3),
+          // Twinkling pulse
+          twinkleSpeed: Math.random() * 0.008 + 0.002,
+          twinklePhase: Math.random() * Math.PI * 2,
+          // Color variation (emerald/silver)
+          hue: Math.random() > 0.7 ? 140 + Math.random() * 30 : 190,
+          saturation: Math.random() > 0.5 ? 30 : 12,
+        };
+      });
     };
     resize();
     window.addEventListener("resize", resize);
 
-    // Create floating embers/particles
-    const stars = Array.from({ length: 320 }, () => {
-      const depth = Math.random();
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: depth * 2.4 + 0.2,
-        baseOpacity: depth * 0.4 + 0.1,
-        opacity: Math.random() * 0.3,
-        // Drift velocity — nearer particles drift faster
-        vx: (Math.random() - 0.5) * 0.12 * (depth + 0.3),
-        vy: (Math.random() - 0.5) * 0.08 * (depth + 0.3),
-        // Twinkling pulse
-        twinkleSpeed: Math.random() * 0.008 + 0.002,
-        twinklePhase: Math.random() * Math.PI * 2,
-        // Color variation (emerald/silver)
-        hue: Math.random() > 0.7 ? 140 + Math.random() * 30 : 200,
-        saturation: Math.random() > 0.5 ? 35 : 10,
-      };
-    });
-
     let t = 0;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      t += 0.016;
+    let lastTime = 0;
+    const draw = (time: number) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      if (delta < 1000 / 45) {
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+      lastTime = time;
+      ctx.clearRect(0, 0, viewportWidth, viewportHeight);
+      t += delta / 1000;
 
       for (const s of stars) {
         // Drift movement
@@ -50,10 +86,10 @@ function StarCanvas() {
         s.y += s.vy;
 
         // Wrap around edges
-        if (s.x < -5) s.x = canvas.width + 5;
-        if (s.x > canvas.width + 5) s.x = -5;
-        if (s.y < -5) s.y = canvas.height + 5;
-        if (s.y > canvas.height + 5) s.y = -5;
+        if (s.x < -5) s.x = viewportWidth + 5;
+        if (s.x > viewportWidth + 5) s.x = -5;
+        if (s.y < -5) s.y = viewportHeight + 5;
+        if (s.y > viewportHeight + 5) s.y = -5;
 
         // Twinkle
         const twinkle = Math.sin(t * s.twinkleSpeed * 60 + s.twinklePhase);
@@ -78,7 +114,7 @@ function StarCanvas() {
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    animId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", resize);
@@ -99,6 +135,24 @@ export default function ParallaxBackground() {
   const orbY1 = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const mistRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mistRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.to(mistRef.current, {
+        x: 40,
+        y: -30,
+        opacity: 0.7,
+        duration: 14,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -107,8 +161,13 @@ export default function ParallaxBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 120% 70% at 50% 0%, #0b3d2e 0%, #0a1a15 40%, #050505 78%)",
+            "radial-gradient(ellipse 120% 70% at 50% 0%, #0b3d2e 0%, #07110d 40%, #030403 78%)",
         }}
+      />
+
+      <div
+        ref={mistRef}
+        className="absolute inset-x-0 top-[-10%] h-[55%] bg-[radial-gradient(circle,_rgba(63,175,122,0.18),_transparent_60%)] opacity-60 blur-3xl"
       />
 
       {/* Subtle color nebula orbs with parallax */}
@@ -130,7 +189,7 @@ export default function ParallaxBackground() {
           height: "520px",
           top: "25%",
           right: "-15%",
-          background: "radial-gradient(circle, rgba(199, 205, 214, 0.15), transparent 70%)",
+          background: "radial-gradient(circle, rgba(199, 205, 214, 0.14), transparent 70%)",
           y: orbY2,
         }}
       />
@@ -141,7 +200,7 @@ export default function ParallaxBackground() {
           height: "560px",
           top: "70%",
           left: "20%",
-          background: "radial-gradient(circle, rgba(11, 61, 46, 0.25), transparent 70%)",
+          background: "radial-gradient(circle, rgba(11, 61, 46, 0.28), transparent 70%)",
           y: orbY3,
         }}
       />
