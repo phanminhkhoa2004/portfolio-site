@@ -37,7 +37,6 @@ export default function PortalTransition({
 
   const doorTransition = {
     duration: prefersReduced ? 0.01 : 0.85,
-    ease: [0.22, 1, 0.36, 1],
   };
 
   const overlayVariants = {
