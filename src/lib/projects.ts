@@ -92,35 +92,35 @@ export const projects: Project[] = [
             title: "Banner Invocation",
             description:
               "A panoramic crest that sets the ceremonial tone for the brand system.",
-            image: "/projects/hoa-am-viet/showcase/banner-01.webp",
+            image: "/projects/hoa-am-viet/showcase/banner-01.png",
             orientation: "banner",
           },
           {
             title: "Poster I: Inked Overture",
             description:
               "Vertical poster layout balancing ceremonial typography with deep emerald texture.",
-            image: "/projects/hoa-am-viet/showcase/poster-01.webp",
+            image: "/projects/hoa-am-viet/showcase/poster-01.png",
             orientation: "vertical",
           },
           {
             title: "Poster II: Ritual Echo",
             description:
               "Secondary poster concept with stacked type and glowing accents for theatrical presence.",
-            image: "/projects/hoa-am-viet/showcase/poster-02.webp",
+            image: "/projects/hoa-am-viet/showcase/poster-02.png",
             orientation: "vertical",
           },
           {
             title: "Brochure Spread I",
             description:
               "A horizontal spread highlighting the brand narrative with structured typography.",
-            image: "/projects/hoa-am-viet/showcase/brochure-01.webp",
+            image: "/projects/hoa-am-viet/showcase/brochure-01.png",
             orientation: "horizontal",
           },
           {
             title: "Brochure Spread II",
             description:
               "Detail-forward brochure layout designed for cinematic editorial pacing.",
-            image: "/projects/hoa-am-viet/showcase/brochure-02.webp",
+            image: "/projects/hoa-am-viet/showcase/brochure-02.png",
             orientation: "horizontal",
           },
         ],
@@ -256,21 +256,21 @@ export const projects: Project[] = [
             title: "Homepage Stage",
             description:
               "Full-width hero and metric cadence for the opening act.",
-            image: "/projects/autodouyin/showcase/web-01.webp",
+            image: "/projects/autodouyin/showcase/web-01.png",
             orientation: "horizontal",
           },
           {
             title: "Creator Flow",
             description:
               "Mid-scroll modules that introduce automation features and spotlight moments.",
-            image: "/projects/autodouyin/showcase/web-02.webp",
+            image: "/projects/autodouyin/showcase/web-02.png",
             orientation: "horizontal",
           },
           {
             title: "Conversion Finale",
             description:
               "Closing sequence with CTA emphasis and cinematic typography rhythm.",
-            image: "/projects/autodouyin/showcase/web-03.webp",
+            image: "/projects/autodouyin/showcase/web-03.png",
             orientation: "horizontal",
           },
         ],
@@ -326,7 +326,7 @@ export const projects: Project[] = [
             title: "Character Study I",
             description:
               "Vertical figure study focusing on silhouette and spectral lighting.",
-            image: "/projects/personal-experiments/showcase/character-01.webp",
+            image: "/projects/personal-experiments/showcase/character-01.png",
             orientation: "vertical",
             fit: "contain",
             frame: "transparent",
@@ -335,7 +335,7 @@ export const projects: Project[] = [
             title: "Character Study II",
             description:
               "Second portrait concept emphasizing texture layering and motion haze.",
-            image: "/projects/personal-experiments/showcase/character-02.webp",
+            image: "/projects/personal-experiments/showcase/character-02.png",
             orientation: "vertical",
             fit: "contain",
             frame: "transparent",
@@ -344,14 +344,14 @@ export const projects: Project[] = [
             title: "Interface Study I",
             description:
               "Horizontal interface mockup with experimental typography grids.",
-            image: "/projects/personal-experiments/showcase/site-01.webp",
+            image: "/projects/personal-experiments/showcase/site-01.png",
             orientation: "horizontal",
           },
           {
             title: "Interface Study II",
             description:
               "Alternate website frame with cinematic spacing and atmospheric overlays.",
-            image: "/projects/personal-experiments/showcase/site-02.webp",
+            image: "/projects/personal-experiments/showcase/site-02.png",
             orientation: "horizontal",
           },
         ],
