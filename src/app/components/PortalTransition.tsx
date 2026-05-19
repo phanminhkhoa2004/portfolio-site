@@ -41,18 +41,13 @@ export default function PortalTransition({
   };
 
   const overlayVariants = {
-    enter: {
-      opacity: 1,
-      transition: { duration: prefersReduced ? 0.01 : 0.2, ease: [0.16, 1, 0.3, 1] },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: prefersReduced ? 0.01 : 0.3,
-        delay: prefersReduced ? 0 : 0.45,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
+    enter: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
+  const overlayTransition = {
+    duration: prefersReduced ? 0.01 : isActive ? 0.2 : 0.3,
+    delay: prefersReduced || isActive ? 0 : 0.45,
   };
 
   return (
@@ -64,6 +59,7 @@ export default function PortalTransition({
         initial={false}
         animate={isActive ? "enter" : "exit"}
         variants={overlayVariants}
+        transition={overlayTransition}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,_rgba(63,175,122,0.18),_transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(216,199,161,0.12),_transparent_55%)]" />
