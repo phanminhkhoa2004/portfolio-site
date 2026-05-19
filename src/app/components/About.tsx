@@ -26,6 +26,7 @@ export default function About() {
                 "Prioritize clarity with a bold identity.",
                 "Build emotion through shadow, glow, and rhythm.",
                 "Experiment to discover a signature narrative voice.",
+                "Craft immersive digital experiences that feel cinematic and alive.",
               ].map((line) => (
                 <div
                   key={line}

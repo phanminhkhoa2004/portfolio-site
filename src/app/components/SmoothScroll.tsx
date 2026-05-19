@@ -1,35 +1,70 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "@studio-freight/lenis";
 
+let lenisInstance: Lenis | null = null;
+let rafId: number | null = null;
+
+function startRaf() {
+  if (rafId !== null || !lenisInstance) return;
+
+  const raf = (time: number) => {
+    lenisInstance?.raf(time);
+    rafId = requestAnimationFrame(raf);
+  };
+
+  rafId = requestAnimationFrame(raf);
+}
+
+function stopRaf() {
+  if (rafId === null) return;
+  cancelAnimationFrame(rafId);
+  rafId = null;
+}
+
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
-    const lenis = new Lenis({
-      duration: 0.6,
-      lerp: 0.08,
-      smoothWheel: true,
-      smoothTouch: false,
-      wheelMultiplier: 1,
-      touchMultiplier: 1,
-    });
+    if (!lenisInstance) {
+      lenisInstance = new Lenis({
+        duration: 0.55,
+        lerp: 0.08,
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1,
+      });
+    }
 
-    let rafId: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    startRaf();
+
+    const resume = () => {
+      lenisInstance?.start();
+      lenisInstance?.resize();
     };
 
-    rafId = requestAnimationFrame(raf);
+    window.addEventListener("focus", resume);
+    document.addEventListener("visibilitychange", resume);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      window.removeEventListener("focus", resume);
+      document.removeEventListener("visibilitychange", resume);
+      stopRaf();
+      lenisInstance?.destroy();
+      lenisInstance = null;
     };
   }, []);
+
+  useEffect(() => {
+    if (!lenisInstance) return;
+    lenisInstance.resize();
+    lenisInstance.start();
+  }, [pathname]);
 
   return null;
 }

@@ -34,6 +34,18 @@ body {
   letter-spacing: 0.01em;
 }
 
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /* ── Typography ───────────────────────────────────────── */
 .display-title {
   font-family: var(--font-display), "Cinzel", serif;

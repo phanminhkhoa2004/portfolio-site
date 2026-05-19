@@ -1,31 +1,16 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
-import { type ProjectDetail, getProjectAssetPath } from "@/lib/projects";
+import { type ProjectDetail } from "@/lib/projects";
 import Magnetic from "./Magnetic";
 import ProjectGallerySection from "./ProjectGallerySection";
-import ProjectImage from "./ProjectImage";
+import ProjectShowcaseSection from "./ProjectShowcaseSection";
 import Reveal from "./Reveal";
 
-const heroSizes = "(max-width: 768px) 100vw, 90vw";
-
 export default function ProjectDetailView({ project }: { project: ProjectDetail }) {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
-  const heroBlur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(8px)"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
-  const coverImage = project.media.cover ?? getProjectAssetPath(project, "cover.webp");
-
   return (
     <main className="relative min-h-screen w-full text-white">
-      <section ref={heroRef} className="relative overflow-hidden pb-16 pt-12 md:pb-24">
+      <section className="relative overflow-hidden pb-16 pt-12 md:pb-24">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(63,175,122,0.22),_transparent_55%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(216,199,161,0.16),_transparent_45%)]" />
@@ -57,15 +42,6 @@ export default function ProjectDetailView({ project }: { project: ProjectDetail 
             <p className="body-text max-w-3xl text-white/70">{project.overview}</p>
           </Reveal>
 
-          <motion.div style={{ scale: heroScale, filter: heroBlur, opacity: heroOpacity }}>
-            <ProjectImage
-              src={coverImage}
-              alt={`${project.title} cover`}
-              ratioClassName="aspect-[16/9]"
-              sizes={heroSizes}
-              priority
-            />
-          </motion.div>
         </div>
       </section>
 
@@ -135,6 +111,15 @@ export default function ProjectDetailView({ project }: { project: ProjectDetail 
         </Reveal>
       </section>
 
+      {project.showcaseSections?.map((section) => (
+        <ProjectShowcaseSection
+          key={section.title}
+          title={section.title}
+          description={section.description}
+          items={section.items}
+        />
+      ))}
+
       <ProjectGallerySection
         title="Visual Gallery"
         description="Cinematic stills from the archive."
@@ -170,13 +155,6 @@ export default function ProjectDetailView({ project }: { project: ProjectDetail 
         variant="moodboard"
       />
 
-      <ProjectGallerySection
-        title="Full-Width Showcase"
-        description="Signature hero stills presented at full scale."
-        images={project.media.showcase}
-        variant="showcase"
-        fullBleed
-      />
     </main>
   );
 }

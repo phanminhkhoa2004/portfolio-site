@@ -40,10 +40,10 @@ export default function Navbar() {
       }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10">
-        <Link href="/Home" className="group flex items-center gap-3">
+        <Link href="/" className="group flex items-center gap-3">
           <div className="relative overflow-hidden rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-2 transition-transform duration-300 group-hover:scale-105">
             <Image
-              src="/asset/nav-logo2.png"
+              src="/asset/nav-logo3.png"
               alt="Logo"
               width={44}
               height={44}
@@ -72,23 +72,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <Magnetic className="hidden md:block">
-          <a href="/Home#contact" className="cta-button text-[0.65rem]">
-            Summon
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-        </Magnetic>
+        <div className="hidden md:block" aria-hidden="true" />
       </div>
 
       {/* Animated bottom gradient line */}

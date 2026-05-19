@@ -12,6 +12,7 @@ export type Project = {
   process: Array<{ title: string; detail: string }>;
   highlights: string[];
   assetPath: string;
+  showcaseSections?: ProjectShowcaseSection[];
 };
 
 export type ProjectMedia = {
@@ -23,6 +24,21 @@ export type ProjectMedia = {
   process: string[];
   moodboard: string[];
   showcase: string[];
+};
+
+export type ProjectShowcaseItem = {
+  title: string;
+  description: string;
+  image: string;
+  orientation: "banner" | "horizontal" | "vertical";
+  fit?: "cover" | "contain";
+  frame?: "default" | "soft" | "transparent";
+};
+
+export type ProjectShowcaseSection = {
+  title: string;
+  description?: string;
+  items: ProjectShowcaseItem[];
 };
 
 export type ProjectDetail = Project & { media: ProjectMedia };
@@ -37,7 +53,7 @@ export const projects: Project[] = [
     overview:
       "Hoa Am Viet is a cultural mark built from typographic contrasts and nocturne greens. The system balances refined ligatures with a modern cinematic grid, creating a brand voice that feels archival yet alive.",
     role: ["Visual Identity", "Art Direction", "Typography"],
-    tools: ["Figma", "Adobe Illustrator", "Photoshop"],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
     timeline: "2024",
     inspirations: [
       "Vietnamese calligraphy scrolls",
@@ -66,47 +82,131 @@ export const projects: Project[] = [
       "Moody palette grounded in emerald and antique parchment",
       "High-contrast layout system for editorial storytelling",
     ],
+    showcaseSections: [
+      {
+        title: "Identity Plates",
+        description:
+          "Each artifact is framed as its own cinematic card, designed for strong vertical and horizontal scaling.",
+        items: [
+          {
+            title: "Banner Invocation",
+            description:
+              "A panoramic crest that sets the ceremonial tone for the brand system.",
+            image: "/projects/hoa-am-viet/showcase/banner-01.webp",
+            orientation: "banner",
+          },
+          {
+            title: "Poster I: Inked Overture",
+            description:
+              "Vertical poster layout balancing ceremonial typography with deep emerald texture.",
+            image: "/projects/hoa-am-viet/showcase/poster-01.webp",
+            orientation: "vertical",
+          },
+          {
+            title: "Poster II: Ritual Echo",
+            description:
+              "Secondary poster concept with stacked type and glowing accents for theatrical presence.",
+            image: "/projects/hoa-am-viet/showcase/poster-02.webp",
+            orientation: "vertical",
+          },
+          {
+            title: "Brochure Spread I",
+            description:
+              "A horizontal spread highlighting the brand narrative with structured typography.",
+            image: "/projects/hoa-am-viet/showcase/brochure-01.webp",
+            orientation: "horizontal",
+          },
+          {
+            title: "Brochure Spread II",
+            description:
+              "Detail-forward brochure layout designed for cinematic editorial pacing.",
+            image: "/projects/hoa-am-viet/showcase/brochure-02.webp",
+            orientation: "horizontal",
+          },
+        ],
+      },
+    ],
     assetPath: "/projects/hoa-am-viet",
   },
   {
-    slug: "3technote",
+    slug: "shinobi-the-dark-world",
     number: "02",
-    title: "3Technote",
-    tagline: "An immersive knowledge interface lit by soft circuitry.",
-    description: "Immersive interface concept for a digital knowledge system.",
+    title: "Shinobi: The Dark World",
+    tagline: "A dark fantasy dossier carved for shadowed blades and arcane rites.",
+    description: "Dark fantasy character and UI showcase for a cinematic action title.",
     overview:
-      "3Technote visualizes an archive of knowledge as a living constellation. The UI blends translucent panels, holographic typography, and adaptive glow to guide focus while maintaining a cinematic hush.",
-    role: ["UX Direction", "UI Design", "Motion Studies"],
-    tools: ["Figma", "After Effects", "Photoshop"],
+      "Shinobi: The Dark World reveals a stealth saga through towering character panels and immersive UI frames. Each scene leans into shadow, ember highlights, and ritual typography to reinforce the world of midnight clans.",
+    role: ["Character Presentation", "UI Concept", "Atmospheric Direction"],
+    tools: ["Adobe Photoshop", "Adobe Illustrator"],
     timeline: "2025",
     inspirations: [
-      "Sci-fi codex interfaces",
-      "Observatory lighting",
-      "Volumetric fog cinematography",
+      "Dark fantasy concept art",
+      "Ritualistic lighting",
+      "Fog-drenched cinematic frames",
     ],
     process: [
       {
-        title: "Narrative Mapping",
-        detail:
-          "Outlined the information hierarchy as a journey of discovery with ritual checkpoints.",
+        title: "World Codex",
+        detail: "Defined the lore pillars, glyph motifs, and sacred materials for the UI shell.",
       },
       {
-        title: "Interface Atmosphere",
+        title: "Shadow Casting",
         detail:
-          "Introduced layered panels, misted depth, and adaptive glow for focus control.",
+          "Balanced deep blacks with ember highlights to spotlight the characters and HUD.",
       },
       {
-        title: "Motion Scripting",
+        title: "Frame Assembly",
         detail:
-          "Defined transitions and micro-animations to evoke floating observation rooms.",
+          "Composed UI mockups as cinematic slices for stealth and combat interfaces.",
       },
     ],
     highlights: [
-      "Adaptive grid for dense information clusters",
-      "Focus-driven lighting cues",
-      "Swirling navigation metaphors",
+      "Character showcase panels with ritual iconography",
+      "Immersive gameplay HUD concept frames",
+      "Noir palette with ember accents",
     ],
-    assetPath: "/projects/3technote",
+    showcaseSections: [
+      {
+        title: "Shadowed Legends",
+        description:
+          "Vertical character plates and horizontal UI frames designed as separate cinematic beats.",
+        items: [
+          {
+            title: "Character Panel I",
+            description:
+              "Vertical showcase for the lead shinobi, framed with sigils and misted light.",
+            image: "/projects/shinobi-the-dark-world/showcase/character-01.png",
+            orientation: "vertical",
+            fit: "contain",
+            frame: "transparent",
+          },
+          {
+            title: "Character Panel II",
+            description:
+              "Secondary portrait presentation with steel textures and shadow gradients.",
+            image: "/projects/shinobi-the-dark-world/showcase/character-02.png",
+            orientation: "vertical",
+            fit: "contain",
+            frame: "transparent",
+          },
+          {
+            title: "Gameplay UI Frame I",
+            description:
+              "Horizontal HUD mockup revealing stealth meters, relics, and glyph counters.",
+            image: "/projects/shinobi-the-dark-world/showcase/ui-01.png",
+            orientation: "horizontal",
+          },
+          {
+            title: "Gameplay UI Frame II",
+            description:
+              "Interface preview for combat encounters with layered map and combo cues.",
+            image: "/projects/shinobi-the-dark-world/showcase/ui-02.png",
+            orientation: "horizontal",
+          },
+        ],
+      },
+    ],
+    assetPath: "/projects/shinobi-the-dark-world",
   },
   {
     slug: "autodouyin",
@@ -117,7 +217,7 @@ export const projects: Project[] = [
     overview:
       "AutoDouyin brings automation for creators into a theatrical landing experience. The layout emphasizes spotlighted modules, rhythm-driven metrics, and a nocturnal palette to convey momentum.",
     role: ["Landing Page Design", "Brand System", "Content Strategy"],
-    tools: ["Figma", "Illustrator", "Cinema 4D"],
+    tools: ["Figma", "Next.js"],
     timeline: "2025",
     inspirations: [
       "Stage lighting rigs",
@@ -146,6 +246,36 @@ export const projects: Project[] = [
       "Metric storytelling blocks",
       "Cinematic gradient frames",
     ],
+    showcaseSections: [
+      {
+        title: "Website Screens",
+        description:
+          "Each website frame is presented as its own scene for future screenshot inserts.",
+        items: [
+          {
+            title: "Homepage Stage",
+            description:
+              "Full-width hero and metric cadence for the opening act.",
+            image: "/projects/autodouyin/showcase/web-01.webp",
+            orientation: "horizontal",
+          },
+          {
+            title: "Creator Flow",
+            description:
+              "Mid-scroll modules that introduce automation features and spotlight moments.",
+            image: "/projects/autodouyin/showcase/web-02.webp",
+            orientation: "horizontal",
+          },
+          {
+            title: "Conversion Finale",
+            description:
+              "Closing sequence with CTA emphasis and cinematic typography rhythm.",
+            image: "/projects/autodouyin/showcase/web-03.webp",
+            orientation: "horizontal",
+          },
+        ],
+      },
+    ],
     assetPath: "/projects/autodouyin",
   },
   {
@@ -157,7 +287,7 @@ export const projects: Project[] = [
     overview:
       "Personal Experiments is a collection of speculative visuals exploring shadow, texture, and motion. Each study focuses on atmosphere-first composition with disciplined typography.",
     role: ["Concept Art", "Typography", "Motion"],
-    tools: ["Figma", "Photoshop", "After Effects"],
+    tools: ["Figma", " Adobe Photoshop", "Adobe Illustrator", "Next.js"],
     timeline: "2023-2026",
     inspirations: [
       "Dark fantasy film stills",
@@ -185,6 +315,47 @@ export const projects: Project[] = [
       "Ambient typography experiments",
       "Volumetric glow studies",
       "Cinematic motion loops",
+    ],
+    showcaseSections: [
+      {
+        title: "Experimental Plates",
+        description:
+          "Independent holders for character art and interface experiments.",
+        items: [
+          {
+            title: "Character Study I",
+            description:
+              "Vertical figure study focusing on silhouette and spectral lighting.",
+            image: "/projects/personal-experiments/showcase/character-01.webp",
+            orientation: "vertical",
+            fit: "contain",
+            frame: "transparent",
+          },
+          {
+            title: "Character Study II",
+            description:
+              "Second portrait concept emphasizing texture layering and motion haze.",
+            image: "/projects/personal-experiments/showcase/character-02.webp",
+            orientation: "vertical",
+            fit: "contain",
+            frame: "transparent",
+          },
+          {
+            title: "Interface Study I",
+            description:
+              "Horizontal interface mockup with experimental typography grids.",
+            image: "/projects/personal-experiments/showcase/site-01.webp",
+            orientation: "horizontal",
+          },
+          {
+            title: "Interface Study II",
+            description:
+              "Alternate website frame with cinematic spacing and atmospheric overlays.",
+            image: "/projects/personal-experiments/showcase/site-02.webp",
+            orientation: "horizontal",
+          },
+        ],
+      },
     ],
     assetPath: "/projects/personal-experiments",
   },

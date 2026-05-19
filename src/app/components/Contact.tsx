@@ -1,7 +1,6 @@
 "use client";
 
 import Reveal from "./Reveal";
-import Magnetic from "./Magnetic";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const contacts = [
@@ -39,25 +38,6 @@ export default function Contact() {
                 </p>
               </div>
             ))}
-          </div>
-          <div className="mt-8">
-            <Magnetic>
-              <a href="mailto:mkp070204@gmail.com" className="cta-button">
-                Send an Owl
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </Magnetic>
           </div>
         </div>
       </Reveal>

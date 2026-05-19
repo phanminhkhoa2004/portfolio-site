@@ -11,7 +11,7 @@ export default function PageTransition({
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence initial={false} mode="sync">
       <motion.div
         key={pathname}
 
@@ -30,11 +30,7 @@ export default function PageTransition({
         }}
 
         // 👇 khi thoát
-        exit={{
-          opacity: 0,
-          y: -24,
-          scale: 0.98,
-        }}
+        exit={{ opacity: 0, y: -24, scale: 0.98 }}
 
         transition={{
           duration: 0.45,

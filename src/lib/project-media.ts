@@ -73,7 +73,7 @@ export async function getProjectMedia(project: Project): Promise<ProjectMedia> {
     };
   }
 
-  const [cover, thumbnail, gallery, vertical, widescreen, process, moodboard, showcase] =
+  const [cover, thumbnail, gallery, vertical, widescreen, projectProcess, moodboard, showcase] =
     await Promise.all([
       findNamedImage(baseDir, publicRoot, "cover"),
       findNamedImage(baseDir, publicRoot, "thumbnail"),
@@ -91,7 +91,7 @@ export async function getProjectMedia(project: Project): Promise<ProjectMedia> {
     gallery,
     vertical,
     widescreen,
-    process,
+    process: projectProcess,
     moodboard,
     showcase,
   };

@@ -25,6 +25,8 @@ type LayoutConfig = {
   gridClassName: string;
   sizes: string;
   imageClassName?: string;
+  fit?: "cover" | "contain";
+  frame?: "default" | "soft" | "transparent";
   getLayout: (index: number, total: number) => { ratio: string; span?: string };
 };
 
@@ -45,6 +47,8 @@ const mosaicLayout: LayoutConfig = {
 const verticalLayout: LayoutConfig = {
   gridClassName: "grid gap-6 sm:grid-cols-2 xl:grid-cols-3",
   sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  fit: "contain",
+  frame: "soft",
   getLayout: (index) => (index % 4 === 0 ? { ratio: "aspect-[2/3]" } : { ratio: "aspect-[3/4]" }),
 };
 
@@ -58,12 +62,15 @@ const widescreenLayout: LayoutConfig = {
 const processLayout: LayoutConfig = {
   gridClassName: "grid gap-6 md:grid-cols-2 xl:grid-cols-3",
   sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  fit: "contain",
+  frame: "soft",
   getLayout: () => ({ ratio: "aspect-[4/3]" }),
 };
 
 const moodboardLayout: LayoutConfig = {
   gridClassName: "grid gap-5 sm:grid-cols-2 lg:grid-cols-4",
   sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw",
+  fit: "cover",
   getLayout: (index) => (index % 5 === 0 ? { ratio: "aspect-[4/5]" } : { ratio: "aspect-[1/1]" }),
 };
 
@@ -71,6 +78,7 @@ const showcaseLayout: LayoutConfig = {
   gridClassName: "grid gap-10",
   sizes: "100vw",
   imageClassName: "rounded-none md:rounded-[40px]",
+  fit: "cover",
   getLayout: () => ({ ratio: "aspect-[21/9]" }),
 };
 
@@ -127,6 +135,8 @@ export default function ProjectGallerySection({
                 alt={`${title} ${index + 1}`}
                 ratioClassName={ratio}
                 sizes={layout.sizes}
+                fit={layout.fit}
+                frame={layout.frame}
                 className={cn(layout.imageClassName, span)}
               />
             </Reveal>
