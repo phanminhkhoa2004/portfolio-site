@@ -6,21 +6,21 @@ import { motion } from "framer-motion";
 const steps = [
   {
     year: "2022",
-    title: "First Sparks",
+    title: "Tutor",
     description:
-      "Began exploring visual storytelling through posters and moodboards.",
+      "Started my journey as a tutor 1:1 for students, where I developed my communication and teaching skills.",
   },
   {
-    year: "2024",
-    title: "Design Discipline",
+    year: "2023",
+    title: "Website Development",
     description:
-      "Focused on composition, typographic rhythm, and spatial balance.",
+      "Being an intern at 3TECHNIFY company, I honed my skills in crafting engaging online experiences.",
   },
   {
-    year: "2026",
-    title: "Cinematic Systems",
+    year: "2025",
+    title: "Teaching Assistant",
     description:
-      "Building immersive scenes with motion, depth, and premium polish.",
+      "Work as a teaching assistant for VUS English Center.",
   },
 ];
 
